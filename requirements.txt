@@ -1,0 +1,6 @@
+pyTelegramBotAPI==4.28.0
+pymongo==4.7.2
+apscheduler==3.10.4
+flask==3.0.3
+dnspython==2.6.1
+python-dotenv==1.0.1
