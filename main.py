@@ -4,7 +4,6 @@ from threading import Thread
 from apscheduler.schedulers.background import BackgroundScheduler
 
 from config import BOT_TOKEN
-from utils.scheduler import kick_expired_users
 
 bot = telebot.TeleBot(BOT_TOKEN, parse_mode="Markdown")
 
@@ -27,16 +26,25 @@ if __name__ == '__main__':
 
     keep_alive()
 
-    scheduler = BackgroundScheduler()
+@bot.message_handler(commands=['start'])
+def start_message(message):
 
-    scheduler.add_job(
-        kick_expired_users,
-        'interval',
-        minutes=1
+    text = (
+        "🔥 *WELCOME TO BNF PRIVATE COMMUNITY*\n\n"
+        "📈 Premium Trading Community\n\n"
+        "✅ Daily Market Analysis\n"
+        "✅ Live Trading Sessions\n"
+        "✅ Premium Trade Setups\n"
+        "✅ Risk Management\n"
+        "✅ Community Support\n\n"
+        "━━━━━━━━━━━━━━\n\n"
+        "💳 Select your plan below"
     )
 
-    scheduler.start()
-
+    bot.send_message(
+        message.chat.id,
+        text
+    )
     print("BNF BOT STARTED")
 
     bot.infinity_polling(skip_pending=True)
